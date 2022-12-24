@@ -3,4 +3,4 @@ project(Map)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Map main.cpp Map.cpp Map.h HashMap.cpp HashMap.h List.cpp List.h LinkedList.cpp LinkedList.h HashFunc.cpp HashFunc.h KvData.cpp KvData.h StdHashFunc.cpp StdHashFunc.h)
+add_executable(Map main.cpp storage/Map.cpp storage/Map.h storage/HashMap.cpp storage/HashMap.h storage/List.cpp storage/List.h storage/LinkedList.cpp storage/LinkedList.h storage/HashFunc.cpp storage/HashFunc.h storage/KvData.cpp storage/KvData.h storage/StdHashFunc.cpp storage/StdHashFunc.h)

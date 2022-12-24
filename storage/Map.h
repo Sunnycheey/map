@@ -14,6 +14,7 @@ public:
     virtual void put(K k, V v) = 0;
     virtual V get(K k) = 0;
     virtual bool remove(K k) = 0;
+    virtual size_t size() = 0;
     Map(int32_t bucketSize): _bucketSize(bucketSize) {}
 protected:
     int32_t _bucketSize;

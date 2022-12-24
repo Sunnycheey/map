@@ -9,7 +9,7 @@
 template<typename T>
 class StdHashFunc : public HashFunc<T>{
 public:
-    virtual std::size_t  getHash(T t) {
+    std::size_t getHash(T t) override {
         return _hashFunc(t);
     }
 private:

@@ -6,6 +6,7 @@
 #define HASHMAP_LINKEDLIST_H
 
 #include "List.h"
+#include <cstdint>
 template<typename T>
 class LinkedNode {
 public:
@@ -51,11 +52,13 @@ private:
     Iterator* getIterator() {
         return new Iterator(this);
     }
-    void push_back(T t);
-    T pop_back();
-    T front();
-    T back();
-    LinkedList(): _head(new LinkedNode<T>()), _tail(new LinkedNode<T>()) {
+    void push_back(T t) override;
+    T pop_back() override;
+    T front() override;
+    T back() override;
+    size_t getSize();
+    bool remove(Iterator* iterator);
+    LinkedList(): _head(new LinkedNode<T>()), _tail(new LinkedNode<T>()), _size(0) {
         _head->_next = _tail;
         _tail->_prev = _head;
         _head->_prev = _tail;
@@ -64,6 +67,7 @@ private:
 private:
     LinkedNode<T>* _head;
     LinkedNode<T>* _tail;
+    size_t _size;
 };
 
 template<typename T>
@@ -73,6 +77,7 @@ void LinkedList<T>::push_back(T t) {
     node->_prev = _tail->_prev;
     node->_next = _tail;
     _tail->_prev = node;
+    _size++;
 }
 
 template<typename T>
@@ -83,6 +88,7 @@ T LinkedList<T>::pop_back() {
         _tail->_prev = _tail->_prev->_prev;
         delete _tail->_prev->_next;
         _tail->_prev->_next = _tail;
+        _size--;
         return data;
     }
     return t;
@@ -104,6 +110,17 @@ T LinkedList<T>::back() {
         return _tail->_prev->_data;
     }
     return t;
+}
+
+template<typename T>
+size_t LinkedList<T>::getSize() {
+    return _size;
+}
+
+template<typename T>
+bool LinkedList<T>::remove(Iterator* iterator) {
+    iterator->remove();
+    _size--;
 }
 
 
